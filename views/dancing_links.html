@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name=viewport content=“width=800”>
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+    /* Color scheme stolen from Sergey Karayev */
+    a {
+    color: #1772d0;
+    text-decoration:none;
+    }
+    a:focus, a:hover {
+    color: #f09228;
+    text-decoration:none;
+    }
+    body,td,th,tr,p,a {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px
+    }
+    strong {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+    }
+    heading {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 22px;
+    }
+    papertitle {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 700
+    }
+    name {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 32px;
+    }
+    .one
+    {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    }
+    .two
+    {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .2s ease-in-out;
+    -webkit-transition: opacity .2s ease-in-out;
+    }
+    .fade {
+     transition: opacity .2s ease-in-out;
+     -moz-transition: opacity .2s ease-in-out;
+     -webkit-transition: opacity .2s ease-in-out;
+    }
+    span.highlight {
+        background-color: #ffffd0;
+    }
+    .matrix {
+        position: relative;
+    }
+    .matrix:before, .matrix:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        border: 1px solid #000;
+        width: 6px;
+        height: 100%;
+    }
+    .matrix:before {
+        left: -6px;
+        border-right: 0;
+    }
+    .matrix:after {
+        right: -6px;
+        border-left: 0;
+    }
+    div.sourceCode { overflow-x: auto; }
+    table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+      margin: 0; padding: 0; vertical-align: baseline; border: none; }
+    table.sourceCode { width: 100%; line-height: 100%; }
+    td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+    td.sourceCode { padding-left: 5px; }
+    code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code > span.dt { color: #902000; } /* DataType */
+    code > span.dv { color: #40a070; } /* DecVal */
+    code > span.bn { color: #40a070; } /* BaseN */
+    code > span.fl { color: #40a070; } /* Float */
+    code > span.ch { color: #4070a0; } /* Char */
+    code > span.st { color: #4070a0; } /* String */
+    code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code > span.ot { color: #007020; } /* Other */
+    code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code > span.fu { color: #06287e; } /* Function */
+    code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code > span.cn { color: #880000; } /* Constant */
+    code > span.sc { color: #4070a0; } /* SpecialChar */
+    code > span.vs { color: #4070a0; } /* VerbatimString */
+    code > span.ss { color: #bb6688; } /* SpecialString */
+    code > span.im { } /* Import */
+    code > span.va { color: #19177c; } /* Variable */
+    code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code > span.op { color: #666666; } /* Operator */
+    code > span.bu { } /* BuiltIn */
+    code > span.ex { } /* Extension */
+    code > span.pp { color: #bc7a00; } /* Preprocessor */
+    code > span.at { color: #7d9029; } /* Attribute */
+    code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+  <div id="centered" style="margin: 0 auto; width:800px; word-wrap: break-word;">
+    <p><a href="http://hfiuza.github.io">Home</a></p>
+
+    <h2 id="introduction">Introduction</h2>
+    <p>In this post, we will take a look at an algorithm to solve a NP-complete problem, the exact cover problem, and some of its applications for Sudoku solving, tiling, and the N-queens problem.</p>
+
+    <p>Code and school report for this post can be found <a href="https://github.com/hfiuza/DancingLinks">here</a>.</p>
+
+
+    <h2 id="exact-cover-definition">The exact cover problem</h2>
+    <p>In mathematics, given a collection <span class="math inline">S</span> of subsets of a set <span class='math inline'>X</span>, an exact cover is a subcollection <span class='math inline'>S*</span> of <span class='math inline'>S</span> such that each element in <span class='math inline'>X</span> is contained in exactly one subset in <span class='math inline'>S*</span>.</p>
+
+    <p>In computer science, the exact cover problem consists of finding a exact cover from such a collection. It is an NP-complete problem, as proved by <a href="https://people.eecs.berkeley.edu/~luca/cs172/karp.pdf">Karp</a> in 1972 by indirectly reducing it to the satisfiability problem.</p>
+
+    <p>The matrix version of the problem can be described as: for a matrix of only 0s and 1s, one has to find a subset of its rows containing exactly one 1 for each of its column. For example, the rows 0, 4 are a solution for the matrix:</p>
+
+    <div align=center>
+        <table class="matrix">
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2 id="dancing_links">Dancing Links</h2>
+
+      <p>Dancing Links are a data strucure conceived by Donald Knuth to be used in his Algorithm X, which efficiently solves the exact cover problem. In the matrix version, the dancing links data structure represents each row and each column as a circular doubly-linked list consisted exclusively of cells with 1s in the original matrix.</p>
+
+      <p>It is based on one simple observation: in a circular doubly-linked list, doing:</p>
+
+      <div class="sourceCode" style="background-color: #272822;color: #F8F8F2"><code class="sourceCode python">
+        x.left.right <span class="op">=</span> x.right
+        x.right.left <span class="op">=</span> x.left
+      </code>
+      </div>
+
+      <p>removes node x from the list, while:</p>
+
+      <div class="sourceCode" style="background-color: #272822;color: #F8F8F2"><code class="sourceCode python">
+        x.left.right <span class="op">=</span> x
+        x.right.left <span class="op">=</span> x
+      </code>
+      </div>
+
+      <p>restores x's position in the list, provided that x.left and x.right have been left unchanged.</p>
+
+      <p>This properties are indispensible when efficiently implementing the algorithm X.</p>
+
+      <p align="center">
+      <img src="../img/dancing_links.png"/, width="400">
+      </p>
+
+    <h2 id="algorithm_x">Algorithm X</h2>
+
+      <p>The algorithm X is an efficient recursive backtracking algorithm that gets its efficiency from repeatedly removing and restoring nodes from a dancing links data structure in O(1) time.</p>
+
+      <p>It can be much more efficient than naïve backtracing algorithms. For example, naïve algorithms usually fail to solve Sudoku 16x16 in a reasonable time, while algothm X can do it in less than 1s in a normal modern computer.</p>
+
+      <p>The exact steps used when backtracking in algorithm X are, as described at Wikipedia, for a given matrix A of 1s and 0s:</p>
+
+      <ol>
+        <li><p>If the matrix A has no columns, the current partial solution is a valid solution; terminate successfully.</p></li>
+        <li><p>Otherwise choose a column c (deterministically).</p></li>
+        <li><p>Choose a row r such that Ar, c = 1 (nondeterministically).</p></li>
+        <li><p>Include row r in the partial solution.</p></li>
+        <li><p><pre>
+For each column j such that Ar, j = 1,
+    for each row i such that Ai, j = 1,
+        delete row i from matrix A.
+    delete column j from matrix A.</pre></p>
+        <li><p>Repeat this algorithm recursively on the reduced matrix A.</p></li>
+      </ol>
+
+      <p>In this algorithm, steps 3 and 5 can be efficiently performed because 1s are arranged in circular lists for both rows and columns.</p>
+
+      <p>In addition, restoring a previous state when backtracking can be done thanks to the second observation we made when looking at the dancing links data structure.</p>
+
+    <h2 id="applications">Interesting applications</h2>
+
+      <p>According to Computer Science theory, any NP-complete problem can be reduced to the exact cover problem, but some problems have specially intuitive reductions and are worth mentioning: Sudoku solving, Pentomino tiling, and the N-queens problem. In fact, the N-queens problem can be reduced to a slight generalization of the exact cover problem.</p>
+
+      <p>We will now take a closer look at Sudoku solving and pentomino tiling.</p>
+
+      <h3 id="sudoku">Sudoku</h2>
+
+        <p>In an $N^2 \times N^2$ Sudoku, one wants to have exactly one of each number from $1$ to $N^2$ in each row, each column, and each $N\times N$ square.</p>
+
+        <p>When constructing the dancing links to solve a Sudoku game, for each cell $(r, c)$ in the Sudoku table and each of the possible $N^2$ numbers $k$ in that cell, we add a row. This row contains exactly $3$ 1s: the first for the column that tracks if there is a number $k$ in row $r$, the second for the column that tracks if there is a number $k$ in column $c$, and the last for the columns trat tracks if there is a number $k$ in the $N\times N$ square $N^2 \times \lfloor{\frac{r}{N^2}}\rfloor + \lfloor{\frac{c}{N^2}}\rfloor$.</p>
+
+        <p>We have just constructed a dancing links table with $N^2\times N^2\times N^2 = N^6$ rows and $3 \times N^2\times N^2$ columns. For usual values of $N$ ($3$, $4$, or $5$), this size is of a much smaller than order of magnitude than today's computers memory sizes. It also is worth mentioning that for recursive implementations, the call stack can be quite big, but its size won't be greater than the number of rows, so $N^6$.</p>
+
+        <p>When studying the time complexity, we can first see that it is exponential, considering that we test in theory every subset of rows when backtracking, so $2^{N^6}$ possibilities. Although this number is already enormous for $N=2$, we can still empirically observe that the algorithm makes correct predictions in less than a second for $N$ equal to $3$ and $4$, for most subsets are not reached in-depth search of our algorithm.</p>
+
+        <p>When solving a non-empty Sudoku challenge, it suffices to remove rows corresponding to pre-defined choices (for cells that already contain a number), along with columns that already contain a 1 in a removed row. Then one can directly apply algorithm X to the remaining table.</p>
+
+        <h4 id="sudoku-testing">Testing our algorithm</h6>
+
+          <p>Nothing better than having a neutral online judger to test the implementation of the algorithm and its use to solve Sudoku challenges. I used <a href="https://www.spoj.com/problems/SUDOKU/">this problem</a> from Sphere Online Judger to test my implementation.</p>
+
+          <p>To do that, I only had to adapt the code to correctly read the input and output the results in the standard output according to the formats expected by the online judger. This adapted code can be found <a href="https://github.com/hfiuza/DancingLinks/tree/master/SPOJ">here</a> and the submission results can be found <a href="https://www.spoj.com/status/SUDOKU,hfiuza/">here</a>.</p>
+
+          <p align="center">
+          <img src="../img/sudoku.png"/, width="150">
+          </p>
+
+      <h3 id="tiling">Pentomino tiling</h3>
+
+        <p>The pentomino tiling problem consists of finding a way to tile a board with a given set of pentominoes.</p>
+
+        <p align="center">
+        <img src="../img/pentomino.png"/, width="150">
+        </p>
+
+        <p>When solving this problem with a dancing links table, one adds a row for each possible action of adding a pentomino $P$ to the board in a specific position. The constraints are represented in this row as 1s in columns: the columns corresponding to the covered board cells, and the column corresponding to the pentomino $P$.</p>
+
+        <p>For $p$ pentominos and a two-dimensional board with $N$ cells, we have constructed a table with at most $4 * p * N$ rows (or possible actions) (considering 4 possibly distinct rotations, the $p$ pentominoes, and the possible positions of the upper left cell of the pentomino in the board) and $N + p$ columns ($N$ to ensure that each cell in the board is covered by exactly 1 pentomino, $p$ to ensure that each pentomino is used at most once).</p>
+
+        <p>For the most usual cases, $N$ is not greater than 300 and $p$ is no greater than $50$, and using algorithm X to this table effciently finds all possible solutions in less than a few seconds.</p>
+
+      <h2 id="extensions">Extensions</h2>
+
+        <p>Dancing links can also be slightly modified, as described in Knuth's paper, to solve the generalized exact cover problem, in which some specific columns are not expected to be covered.</p>
+
+        <p>Some problems that can be reduced to this generalized version are: the pentomino tiling in which not all pentominoes need to be used, and the N-queens problem. Knuth also studied a few other problems in his paper.</p>
+
+    <p></p>
+
+    <div id="refs" class="references">
+      <div id="ref-knuth">
+        <p>Knuth D.E. 2000. "Dancing links" <em>Millenial Perspectives in Computer Science</em>.</p>
+      </div>
+      <div id="ref-karp">
+        <p>Karp R. M. 1972. "Reducibility Among Combinatorial Problems" <em>Complexity of Computer Computations</em>.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
